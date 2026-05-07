@@ -1,0 +1,6 @@
+name: AegisAnticheat
+version: 1.0
+description: 1.8.x dedicated anti-cheat
+author: Geuxy
+main: gg.aegis.plugin.AegisPlugin
+api-version: 1.8.8
