@@ -1,46 +1,41 @@
 package gg.aegis.check;
 
-import com.github.retrooper.packetevents.event.ProtocolPacketEvent;
+import gg.aegis.service.alert.AlertService;
+import gg.aegis.service.punish.PunishService;
+import gg.aegis.util.PacketProcessor;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-import lombok.experimental.Accessors;
-import gg.aegis.Anticheat;
 import gg.aegis.player.AegisPlayer;
+import gg.aegis.util.other.StringUtil;
 import gg.aegis.util.text.TextBuilder;
 import gg.aegis.util.other.Score;
 
-@Getter @Accessors(fluent = true) @RequiredArgsConstructor
-public abstract class BaseCheck {
+public abstract class BaseCheck implements PacketProcessor {
 
-    private final CheckMetadata metadata = CheckMetadata.of(this.getClass());
+    public final CheckMetadata metadata = CheckMetadata.of(this.getClass());
 
-    protected final Score buffer = new Score(0, 10);
-    protected final Score violations = new Score(0, 10);
-
-    public abstract void handle(AegisPlayer player, ProtocolPacketEvent event);
+    public final Score buffer = new Score(0, 10);
+    public final Score violations = new Score(0, 10);
 
     protected void fail(AegisPlayer player) {
-        Anticheat.INSTANCE.getViolationManager().addViolation(player, this, null);
+        this.fail(player, null);
     }
 
     protected void fail(AegisPlayer player, TextBuilder message) {
-        Anticheat.INSTANCE.getViolationManager().addViolation(player, this, message);
-    }
-
-    /*
-     * Returns true if the player has reached the maximum
-     * amount of violations, usually resulting in punishment.
-     */
-    public boolean addViolation() {
         this.violations.rise(1);
 
         if(this.violations.isMaximum()) {
             this.violations.reset();
-            return true;
+            PunishService.run(player, TextBuilder.of("You were detected cheating"));
         }
-        return false;
+
+        String baseMessage = StringUtil.format(
+                "{} failed {} ({})",
+                player.getRaw().getName(),
+                this.metadata.name(),
+                this.metadata.unique()
+        );
+
+        AlertService.alert(TextBuilder.of(baseMessage).add(message));
     }
 
 }

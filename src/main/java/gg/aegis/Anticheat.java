@@ -2,6 +2,7 @@ package gg.aegis;
 
 import com.github.retrooper.packetevents.PacketEvents;
 
+import gg.aegis.service.alert.AlertService;
 import lombok.Getter;
 
 import gg.aegis.check.CheckManager;
@@ -10,7 +11,6 @@ import gg.aegis.listeners.PacketEventsListener;
 import gg.aegis.movement.MovementEngine;
 import gg.aegis.player.PlayerManager;
 
-import gg.aegis.violation.ViolationManager;
 import org.bukkit.Bukkit;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -24,7 +24,6 @@ public enum Anticheat {
 
     private final PlayerManager playerManager = new PlayerManager();
     private final CheckManager checkManager = new CheckManager();
-    private final ViolationManager violationManager = new ViolationManager();
 
     private final MovementEngine movementEngine = new MovementEngine();
 

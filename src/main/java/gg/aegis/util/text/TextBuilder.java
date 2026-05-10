@@ -34,29 +34,31 @@ public final class TextBuilder {
     }
 
     public TextBuilder add(String line) {
-        this.lines.add(b -> b.append(line));
+        if(line != null && !line.isEmpty()) {
+            this.lines.add(b -> b.append(line));
+        }
         return this;
     }
 
     public TextBuilder add(String key, Object value) {
-        this.lines.add(b ->
-                b.append(key)
-                .append(KEY_VALUE_SEPARATOR)
-                .append(value)
-        );
+        if(key != null && !key.isEmpty() && value != null) {
+            this.lines.add(b ->
+                    b.append(key)
+                    .append(KEY_VALUE_SEPARATOR)
+                    .append(value)
+            );
+        }
         return this;
     }
 
     public TextBuilder add(TextBuilder builder) {
-        this.lines.add(b -> b.append(builder.flatten()));
+        if(builder != null && !builder.lines.isEmpty()) {
+            this.lines.add(b -> b.append(builder.flatten()));
+        }
         return this;
     }
 
     public String build(String separator) {
-        if(this.lines.isEmpty()) {
-            return "";
-        }
-
         StringBuilder builder = new StringBuilder();
 
         for(int i = 0; i < this.lines.size(); i++) {
@@ -66,12 +68,10 @@ public final class TextBuilder {
 
             this.lines.get(i).appendTo(builder);
         }
-
         return builder.toString();
     }
 
     public String flatten() {
         return build(", ");
     }
-
 }

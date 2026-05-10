@@ -10,10 +10,12 @@ repositories {
     maven { url = 'https://repo.codemc.io/repository/maven-releases/' }
     maven { url = 'https://repo.codemc.io/repository/maven-snapshots/' }
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://repo.papermc.io/repository/maven-public/'}
+
 }
 
 dependencies {
-    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    compileOnly "org.github.paperspigot:paperspigot-api:1.8.8-R0.1-20160806.221350-1"
     compileOnly "com.github.retrooper:packetevents-spigot:2.7.0"
     compileOnly "org.projectlombok:lombok:1.18.36"
     annotationProcessor "org.projectlombok:lombok:1.18.36"

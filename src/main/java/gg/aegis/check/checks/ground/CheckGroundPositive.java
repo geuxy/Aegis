@@ -7,8 +7,8 @@ import gg.aegis.check.BaseCheck;
 import gg.aegis.check.CheckData;
 import gg.aegis.check.CheckType;
 import gg.aegis.player.AegisPlayer;
-import gg.aegis.player.data.impl.GhostBlockData;
-import gg.aegis.player.data.impl.PositionData;
+import gg.aegis.player.data.GhostBlockData;
+import gg.aegis.player.data.PositionData;
 
 @CheckData(
         name = "Ground",
@@ -18,7 +18,7 @@ import gg.aegis.player.data.impl.PositionData;
 public class CheckGroundPositive extends BaseCheck {
 
     @Override
-    public void handle(AegisPlayer player, ProtocolPacketEvent event) {
+    public void process(AegisPlayer player, ProtocolPacketEvent event) {
         if(WrapperPlayClientPlayerFlying.isFlying(event.getPacketType()) && !player.isTeleporting()) {
             PositionData positionData = player.data(PositionData.class);
 

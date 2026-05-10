@@ -4,12 +4,12 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import gg.aegis.player.AegisPlayer;
-import gg.aegis.player.data.impl.PositionData;
+import gg.aegis.player.data.PositionData;
 
 import java.util.function.Function;
 
 @Getter @RequiredArgsConstructor
-public enum Exempts {
+public enum Exempt {
 
     // TODO: Restrict a bit more
     EXISTED(p -> p.getLivingTicks() <= 100),

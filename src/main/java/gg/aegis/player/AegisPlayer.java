@@ -2,14 +2,13 @@ package gg.aegis.player;
 
 import com.github.retrooper.packetevents.event.ProtocolPacketEvent;
 
-import gg.aegis.player.data.impl.*;
+import gg.aegis.player.data.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import gg.aegis.Anticheat;
-import gg.aegis.player.data.PacketProcessor;
-import me.geuxy.player.data.impl.*;
-import gg.aegis.player.exempt.Exempts;
+import gg.aegis.util.PacketProcessor;
+import gg.aegis.player.exempt.Exempt;
 import gg.aegis.check.BaseCheck;
 import gg.aegis.util.other.Score;
 
@@ -64,7 +63,7 @@ public class AegisPlayer {
 
     public void handle(ProtocolPacketEvent event) {
         this.dataMap.values().forEach(d -> d.process(this, event));
-        this.checks.forEach(c -> c.handle(this, event));
+        this.checks.forEach(c -> c.process(this, event));
     }
 
     public <T extends PacketProcessor> T data(Class<T> clazz) {
@@ -97,7 +96,7 @@ public class AegisPlayer {
         this.livingTicks = Math.min(500, livingTicks + 1);
     }
 
-    public boolean isExempted(Exempts... exempts) {
+    public boolean isExempted(Exempt... exempts) {
         return Stream.of(exempts).anyMatch(e -> e.getFunction().apply(this));
     }
 

@@ -1,4 +1,4 @@
-package gg.aegis.player.data.impl;
+package gg.aegis.player.data;
 
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.event.ProtocolPacketEvent;
@@ -7,7 +7,7 @@ import com.github.retrooper.packetevents.wrapper.play.client.WrapperPlayClientIn
 
 import lombok.Getter;
 import gg.aegis.player.AegisPlayer;
-import gg.aegis.player.data.PacketProcessor;
+import gg.aegis.util.PacketProcessor;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 

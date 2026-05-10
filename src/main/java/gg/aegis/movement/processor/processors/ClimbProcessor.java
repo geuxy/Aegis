@@ -3,7 +3,7 @@ package gg.aegis.movement.processor.processors;
 import gg.aegis.movement.data.MovementRegistry;
 import gg.aegis.movement.processor.BaseProcessor;
 import gg.aegis.player.AegisPlayer;
-import gg.aegis.player.data.impl.PositionData;
+import gg.aegis.player.data.PositionData;
 
 public class ClimbProcessor implements BaseProcessor {
 

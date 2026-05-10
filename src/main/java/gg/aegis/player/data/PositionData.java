@@ -1,4 +1,4 @@
-package gg.aegis.player.data.impl;
+package gg.aegis.player.data;
 
 import com.github.retrooper.packetevents.event.PacketReceiveEvent;
 import com.github.retrooper.packetevents.event.PacketSendEvent;
@@ -12,7 +12,7 @@ import lombok.Getter;
 
 import lombok.Setter;
 import gg.aegis.player.AegisPlayer;
-import gg.aegis.player.data.PacketProcessor;
+import gg.aegis.util.PacketProcessor;
 import gg.aegis.util.collection.EvictedList;
 import gg.aegis.util.math.MathUtil;
 import gg.aegis.util.math.MinecraftMath;

@@ -24,7 +24,7 @@ public class CheckTimerBalance extends BaseCheck {
     private long lastFlying;
 
     @Override
-    public void handle(AegisPlayer player, ProtocolPacketEvent event) {
+    public void process(AegisPlayer player, ProtocolPacketEvent event) {
         if(!WrapperPlayClientPlayerFlying.isFlying(event.getPacketType())) {
             return;
         }

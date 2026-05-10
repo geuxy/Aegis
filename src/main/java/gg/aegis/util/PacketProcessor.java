@@ -1,4 +1,4 @@
-package gg.aegis.player.data;
+package gg.aegis.util;
 
 import com.github.retrooper.packetevents.event.ProtocolPacketEvent;
 import gg.aegis.player.AegisPlayer;

@@ -9,4 +9,5 @@ public @interface CheckData {
     String name();
     String unique();
     CheckType type();
+
 }
